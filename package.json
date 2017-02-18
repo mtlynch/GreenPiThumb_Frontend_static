@@ -17,14 +17,12 @@
   "devDependencies": {
     "coveralls": "^2.11.6",
     "jasmine-core": "^2.3.4",
-    "jscs": "^2.5.1",
+    "jscs": "^3.0.7",
     "jshint": "^2.8.0",
     "karma": "~1.4.1",
-    "karma-coverage": "^0.5.3",
+    "karma-coverage": "^1.1.1",
     "karma-jasmine": "~1.1.0",
-    "karma-phantomjs2-launcher": "^0.4.0",
-    "phantomjs-prebuilt ": "^2.1.14",
-    "karma-firefox-launcher": "~1.0.0",
-    "karma-phantomjs-launcher": "~1.0.2"
+    "karma-phantomjs2-launcher": "^0.5.0",
+    "phantomjs-prebuilt ": "^2.1.14"
   }
 }
