@@ -1,3 +1,5 @@
+coverage/
+
 # Ignore vim temp files.
 *.swp
 *.swo

@@ -5,8 +5,8 @@ var dashboardApp = angular.module('dashboardApp', []).
       restrict: 'E',
       replace: false,
       scope: {data: '=chartData'},
-      link: function (scope, element, attrs) {
-        var propertyExpression = attrs['valueProperty'];
+      link: function(scope, element, attrs) {
+        var propertyExpression = attrs.valueProperty;
 
         // Set the dimensions of the canvas / graph
         var margin = {top: 30, right: 20, bottom: 30, left: 50};
@@ -14,7 +14,7 @@ var dashboardApp = angular.module('dashboardApp', []).
         var height = 450 - margin.top - margin.bottom;
 
         // Parse the date / time
-        var parseDate = d3.utcParse("%Y%m%dT%H:%M:%SZ");
+        var parseDate = d3.utcParse('%Y%m%dT%H:%M:%SZ');
 
         // Set the ranges
         var x = d3.scaleTime().range([0, width]);
@@ -40,31 +40,31 @@ var dashboardApp = angular.module('dashboardApp', []).
 
           // Add the svg canvas
           var svg = d3.select(element[0])
-            .append("svg")
-              .attr("width", width + margin.left + margin.right)
-              .attr("height", height + margin.top + margin.bottom)
-          .append("g")
-              .attr("transform",
-                    "translate(" + margin.left + "," + margin.top + ")");
+            .append('svg')
+              .attr('width', width + margin.left + margin.right)
+              .attr('height', height + margin.top + margin.bottom)
+          .append('g')
+              .attr('transform',
+                    'translate(' + margin.left + ',' + margin.top + ')');
 
           // Scale the range of the data
           x.domain(d3.extent(data, function(d) { return d.timestamp; }));
           y.domain([0, d3.max(data, function(d) { return d.value; })]);
 
           // Add the valueline path.
-          svg.append("path")
-            .attr("class", "line")
-            .attr("d", valueline(data));
+          svg.append('path')
+            .attr('class', 'line')
+            .attr('d', valueline(data));
 
           // Add the X Axis
-          svg.append("g")
-            .attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")")
+          svg.append('g')
+            .attr('class', 'x axis')
+            .attr('transform', 'translate(0,' + height + ')')
             .call(xAxis);
 
           // Add the Y Axis
-          svg.append("g")
-            .attr("class", "y axis")
+          svg.append('g')
+            .attr('class', 'y axis')
             .call(yAxis);
         };
         scope.$watch('data', function(newValue) {
@@ -79,23 +79,27 @@ var dashboardApp = angular.module('dashboardApp', []).
 
 dashboardApp.run(function($http) {
   $http.get('/temperatureHistory.json').success(function(temperatureHistory) {
-    model.latestTemperature = temperatureHistory[temperatureHistory.length -1].temperature;
+    model.latestTemperature =
+      temperatureHistory[temperatureHistory.length - 1].temperature;
     model.temperature = temperatureHistory;
   });
   $http.get('/ambientHumidityHistory.json').success(function(humidityHistory) {
     model.humidity = humidityHistory;
-    model.latestHumidity = humidityHistory[humidityHistory.length - 1].humidity;
+    model.latestHumidity =
+      humidityHistory[humidityHistory.length - 1].humidity;
   });
   $http.get('/lightHistory.json').success(function(lightHistory) {
     model.lightLevel = lightHistory;
-    model.latestLightLevel = lightHistory[lightHistory.length - 1].light_pct;
+    model.latestLightLevel =
+      lightHistory[lightHistory.length - 1].lightPercentage;
   });
   $http.get('/soilMoistureHistory.json').success(function(moistureHistory) {
     model.soilMoisture = moistureHistory;
-    model.latestSoilMoisture = moistureHistory[moistureHistory.length - 1].moisture;
+    model.latestSoilMoisture =
+      moistureHistory[moistureHistory.length - 1].moisture;
   });
 });
 
-dashboardApp.controller('DashboardCtrl', function ($scope) {
-   $scope.dashboard = model;
+dashboardApp.controller('DashboardCtrl', function($scope) {
+  $scope.dashboard = model;
 });

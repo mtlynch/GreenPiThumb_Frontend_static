@@ -1,0 +1,30 @@
+{
+  "name": "GreenPiThumb-Frontend-Static",
+  "homepage": "https://github.com/JeetShetty/GreenPiThumb",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JeetShetty/GreenPiThumb_Frontend_static"
+  },
+  "license": "Apache-2.0",
+  "scripts": {
+    "lint": "jshint src test && jscs src test",
+    "test": "karma start test/karma.conf.js --single-run",
+    "travis": "npm run lint && npm run test"
+  },
+  "dependencies": {
+    "bower": "^1.6.5"
+  },
+  "devDependencies": {
+    "coveralls": "^2.11.6",
+    "jasmine-core": "^2.3.4",
+    "jscs": "^2.5.1",
+    "jshint": "^2.8.0",
+    "karma": "~1.4.1",
+    "karma-coverage": "^0.5.3",
+    "karma-jasmine": "~1.1.0",
+    "karma-phantomjs2-launcher": "^0.4.0",
+    "phantomjs": "just-boris/phantomjs",
+    "karma-firefox-launcher": "~1.0.0",
+    "karma-phantomjs-launcher": "~1.0.2"
+  }
+}
