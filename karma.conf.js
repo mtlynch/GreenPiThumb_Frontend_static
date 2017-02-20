@@ -12,6 +12,7 @@ module.exports = function(config) {
       'bower_components/angular/angular.js',
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-mocks/angular-mocks.js',
+      'bower_components/d3/d3.js",
       'components/**/*.js'
     ],
 
@@ -26,7 +27,7 @@ module.exports = function(config) {
 
     coverageReporter: {
       type: 'lcov',
-      dir: 'coverage/'
+      dir: '../coverage/'
     },
 
     port: 8000,

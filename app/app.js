@@ -1,3 +1,5 @@
+'use strict';
+
 var model = {};
 var dashboardApp = angular.module('dashboardApp', []).
   directive('lineGraph', function($parse) {
