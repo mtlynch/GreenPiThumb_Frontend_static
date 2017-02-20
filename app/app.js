@@ -1,7 +1,7 @@
 'use strict';
 
 var model = {};
-var dashboardApp = angular.module('dashboardApp', []).
+var greenPiThumbApp = angular.module('greenPiThumbApp', []).
   directive('lineGraph', function($parse) {
     return {
       restrict: 'E',
@@ -79,7 +79,7 @@ var dashboardApp = angular.module('dashboardApp', []).
     };
   });
 
-dashboardApp.run(function($http) {
+greenPiThumbApp.run(function($http) {
   $http.get('/temperatureHistory.json').success(function(temperatureHistory) {
     model.latestTemperature =
       temperatureHistory[temperatureHistory.length - 1].temperature;
@@ -102,6 +102,6 @@ dashboardApp.run(function($http) {
   });
 });
 
-dashboardApp.controller('DashboardCtrl', function($scope) {
+greenPiThumbApp.controller('DashboardCtrl', function($scope) {
   $scope.dashboard = model;
 });
