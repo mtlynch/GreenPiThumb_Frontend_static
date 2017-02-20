@@ -8,9 +8,8 @@ env:
 cache:
   directories:
     - travis_phantomjs
- 
 before_install: |
-  # Upgrade PhantomJS to v2.1.1.
+  # Make sure cached PhantomJS is up to date
   if [ $(phantomjs --version) != $PHANTOMJS_VERSION ]; then
     rm -rf $PWD/travis_phantomjs
     mkdir -p $PWD/travis_phantomjs
