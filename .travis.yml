@@ -3,9 +3,10 @@ dist: xenial
 language: node_js
 node_js:
   - '6.9.5'
-jdk:
-  # Install JDK8 for html5 validator.
-  - oraclejdk8
+addons:
+  apt:
+    packages:
+      - oracle-java8-set-default
 env:
   - PHANTOMJS_VERSION=2.1.1 PATH=$PWD/travis_phantomjs/phantomjs-$PHANTOMJS_VERSION-linux-x86_64/bin:$PATH
 cache:
