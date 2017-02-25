@@ -8,8 +8,6 @@ angular.module('greenPiThumbApp.directives')
       scope: {data: '=chartData'},
       link: function(scope, element, attrs) {
         d3Service.d3().then(function(d3) {
-          var propertyExpression = attrs.valueProperty;
-
           // Set the dimensions of the canvas / graph
           var margin = {top: 30, right: 20, bottom: 30, left: 50};
           var width = 900 - margin.left - margin.right;
@@ -34,10 +32,9 @@ angular.module('greenPiThumbApp.directives')
             .y(function(d) { return y(d.value); });
 
           var updateGraph = function(data) {
-
             data.forEach(function(d) {
               d.timestamp = parseDate(d.timestamp);
-              d.value = scope.$eval(propertyExpression, d);
+              d.value = scope.$eval(attrs.valueProperty, d);
             });
 
             // Add the svg canvas
@@ -69,12 +66,8 @@ angular.module('greenPiThumbApp.directives')
               .attr('class', 'y axis')
               .call(yAxis);
           };
-          scope.$watch('data', function(newValue) {
-            if (!newValue) {
-              return;
-            }
-            updateGraph(newValue);
-          });
+
+          scope.$watch('data', updateGraph);
         });
       }
     };
