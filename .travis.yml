@@ -26,3 +26,5 @@ before_script:
   - npm install
 script:
   - npm run travis
+
+# TODO(mtlynch): Add HTML5 validation back in
