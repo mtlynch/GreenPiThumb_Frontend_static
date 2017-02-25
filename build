@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Print commands.
+set -x
+
 # Exit on first error.
 set -e
 
@@ -7,5 +10,7 @@ npm run travis
 
 html5validator \
   --root ./app \
+  --blacklist bower_components \
   --ignore-re 'Attribute "ng-[a-z-]+" not allowed' \
-  --ignore 'Element "line-graph" not allowed'
+  --ignore 'Element "line-graph" not allowed' \
+  --log INFO
