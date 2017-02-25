@@ -3,6 +3,8 @@
 # Exit on first error.
 set -e
 
+npm run travis
+
 html5validator \
   --root ./src \
   --ignore-re 'Attribute "ng-[a-z-]+" not allowed' \
