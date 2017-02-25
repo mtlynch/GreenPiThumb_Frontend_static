@@ -23,7 +23,7 @@ greenPiThumbApp.run(function($http) {
   $http.get('/lightHistory.json').success(function(lightHistory) {
     model.lightLevel = lightHistory;
     model.latestLightLevel =
-      lightHistory[lightHistory.length - 1].light_pct; // jscs:ignore requireCamelCaseOrUpperCaseIdentifiers
+      lightHistory[lightHistory.length - 1].lightPercentage;
   });
   $http.get('/soilMoistureHistory.json').success(function(moistureHistory) {
     model.soilMoisture = moistureHistory;

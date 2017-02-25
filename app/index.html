@@ -9,10 +9,8 @@
   <title>GreenPiThumb</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
-  <link rel="stylesheet" href="app.css">
-  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="app.css">
 </head>
 <body ng-controller="DashboardCtrl">
   <h1>GreenPiThumb Dashboard</h1>
@@ -39,7 +37,7 @@
   <h2>Ambient Humidity</h2>
   <line-graph chart-data="dashboard.humidity" value-property="humidity"></line-graph>
   <h2>Ambient Light</h2>
-  <line-graph chart-data="dashboard.lightLevel" value-property="light_pct"></line-graph>
+  <line-graph chart-data="dashboard.lightLevel" value-property="lightPercentage"></line-graph>
   <h2>Soil Moisture</h2>
   <line-graph chart-data="dashboard.soilMoisture" value-property="moisture"></line-graph>
   <script src="bower_components/angular/angular.js"></script>
