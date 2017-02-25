@@ -3,7 +3,8 @@
 var model = {};
 
 var greenPiThumbApp = angular.module('greenPiThumbApp', [
-  'greenPiThumbApp.directives'
+  'greenPiThumbApp.directives',
+  'greenPiThumbApp.version'
   ]);
 
 angular.module('d3', []);
