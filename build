@@ -6,6 +6,6 @@ set -e
 npm run travis
 
 html5validator \
-  --root ./src \
+  --root ./app \
   --ignore-re 'Attribute "ng-[a-z-]+" not allowed' \
   --ignore 'Element "line-graph" not allowed'
