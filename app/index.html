@@ -32,6 +32,12 @@
       <td>{{dashboard.latestSoilMoisture | number:0}}</td>
     </tr>
   </table>
+  <div class="latestImage">
+    <a href="{{ dashboard.images[dashboard.currentImage].filename }}" target="_blank">
+      <img class="img-responsive" ng-src="{{ dashboard.images[dashboard.currentImage].filename }}" />
+    </a>
+    <p>{{ dashboard.images[dashboard.currentImage].timestamp | date: 'yyyy-MM-dd h:mm:ss a' }}</p>
+  </div>
   <h2>Temperature</h2>
   <line-graph chart-data="dashboard.temperature" value-property="temperature"></line-graph>
   <h2>Ambient Humidity</h2>

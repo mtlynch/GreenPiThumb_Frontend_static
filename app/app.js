@@ -31,6 +31,25 @@ greenPiThumbApp.run(function($http) {
     model.latestSoilMoisture =
       moistureHistory[moistureHistory.length - 1].soil_moisture;
   });
+  $http.get('/images.json').success(function(images) {
+    model.images = [];
+    images.forEach(function(image) {
+      model.images.push({
+        'timestamp': image.timestamp,
+        'filename': 'images/' + image.filename
+      });
+    });
+    model.images.sort(function(a, b) {
+      if (a.timestamp < b.timestamp) {
+        return -1;
+      }
+      if (a.timestamp > b.timestamp) {
+        return 1;
+      }
+      return 0;
+    });
+    model.currentImage = model.images.length - 1;
+  });
 });
 
 greenPiThumbApp.controller('DashboardCtrl', function($scope) {
