@@ -36,3 +36,8 @@ path {
     stroke-width: 1;
     shape-rendering: crispEdges;
 }
+
+.latestImage {
+  width: 50%;
+  margin-left: 15px;
+}
