@@ -54,4 +54,15 @@ greenPiThumbApp.run(function($http) {
 
 greenPiThumbApp.controller('DashboardCtrl', function($scope) {
   $scope.dashboard = model;
+
+  $scope.previousImage = function() {
+    $scope.dashboard.currentImage -= 1;
+    if ($scope.dashboard.currentImage < 0) {
+      $scope.dashboard.currentImage = $scope.dashboard.images.length - 1;
+    }
+  };
+
+  $scope.nextImage = function() {
+    $scope.dashboard.currentImage = ($scope.dashboard.currentImage + 1) % $scope.dashboard.images.length;
+  };
 });

@@ -33,10 +33,13 @@
     </tr>
   </table>
   <div class="latestImage">
-    <a href="{{ dashboard.images[dashboard.currentImage].filename }}" target="_blank">
-      <img class="img-responsive" ng-src="{{ dashboard.images[dashboard.currentImage].filename }}" />
+    <a ng-href="{{ dashboard.images[dashboard.currentImage].filename }}" target="_blank">
+      <img class="img-responsive" ng-src="{{ dashboard.images[dashboard.currentImage].filename }}" src="#" alt="GreenPiThumb camera image" />
     </a>
     <p>{{ dashboard.images[dashboard.currentImage].timestamp | date: 'yyyy-MM-dd h:mm:ss a' }}</p>
+    <p>Current image {{ dashboard.currentImage }}</p>
+    <button class="btn btn-default" ng-click="previousImage()">Previous</button>
+    <button class="btn btn-default" ng-click="nextImage()">Next</button>
   </div>
   <h2>Temperature</h2>
   <line-graph chart-data="dashboard.temperature" value-property="temperature"></line-graph>
