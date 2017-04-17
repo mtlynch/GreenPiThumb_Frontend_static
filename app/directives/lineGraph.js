@@ -11,6 +11,7 @@ angular.module('greenPiThumbApp.directives')
           // Set the dimensions of the canvas / graph
           var margin = {top: 30, right: 20, bottom: 30, left: 50};
           var width = 900 - margin.left - margin.right;
+          //width = d3.select(iElement[0])[0][0].offsetWidth - 20;
           var height = 450 - margin.top - margin.bottom;
 
           var parseTimestamp = d3.utcParse('%Y%m%dT%H%M%Z');
@@ -39,20 +40,40 @@ angular.module('greenPiThumbApp.directives')
           var formatTime = d3.timeFormat('%I:%M %p');
           var formatValue = d3.format('.1f');
 
-          var updateGraph = function(data) {
+          // Add the svg canvas
+          var svg = d3.select(element[0])
+            .append('svg')
+              .style('width', '100%')
+              .attr('height', height + margin.top + margin.bottom)
+            .append('g')
+              .attr('transform',
+                    'translate(' + margin.left + ',' + margin.top + ')');
+
+          window.onresize = function() {
+            scope.$apply();
+          };
+
+          // Watch for resize event
+          scope.$watch(function() {
+            return angular.element(window)[0].innerWidth;
+          }, function() {
+            if (scope.data) {
+              return scope.render(scope.data);
+            }
+          });
+
+          scope.$watch('data', function(newValues, oldValues) {
+            return scope.render(newValues);
+          });
+
+          scope.render = function(data) {
+            if (!data) {
+              return;
+            }
             data.forEach(function(d) {
               d.timestamp = parseTimestamp(d.timestamp);
               d.value = scope.$eval(attrs.valueProperty, d);
             });
-
-            // Add the svg canvas
-            var svg = d3.select(element[0])
-              .append('svg')
-                .attr('width', width + margin.left + margin.right)
-                .attr('height', height + margin.top + margin.bottom)
-              .append('g')
-                .attr('transform',
-                      'translate(' + margin.left + ',' + margin.top + ')');
 
             // Scale the range of the data
             x.domain(d3.extent(data, function(d) { return d.timestamp; }));
@@ -96,10 +117,6 @@ angular.module('greenPiThumbApp.directives')
               .attr('class', 'y axis')
               .call(yAxis);
           };
-          scope.$watch('data', function(newValue) {
-            if (!newValue) { return; }
-            updateGraph(newValue);
-          });
         });
       }
     };
